@@ -1,0 +1,1275 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+  <title>A Bigger Toolkit for a Changing Planet</title>
+  <meta name="description" content="An interactive explainer on Earth system stabilization: the feedback loops and tipping points now in motion, the research that could help steady them, and why philanthropy can make the difference now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Taviraj:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+/* ==========================================================================
+   Outlier Projects — Explainers design system
+   Mirrors outlierprojects.org: Taviraj headings, Outfit body, midnight ink,
+   cloud / butter / sage / midnight section bands, canary accents.
+   ========================================================================== */
+
+:root {
+  /* Brand (taken from outlierprojects.org) */
+  --midnight: #25263D;
+  --cloud: #FFFEF7;
+  --canary: #FFE850;
+  --butter: #FFF2B5;
+  --ink: #25263D;
+  --ink-soft: rgba(37, 38, 61, 0.62);
+  --ink-faint: rgba(37, 38, 61, 0.14);
+
+  /* Supporting neutrals (sampled from the hero / card surfaces) */
+  --sage: #B8C2BC;
+  --sage-light: #D9DED9;
+  --mist: #ECEEEA;
+  --card: #E9EBE6;
+  --white: #FFFFFF;
+
+  /* Data colors — use these for charts, consistently across explainers */
+  --c-main: #2C7A7B;     /* main series: the explainer's subject      */
+  --c-compare: #6B6C80;  /* comparison series                          */
+  --c-third: #C98A2B;    /* third series                               */
+  --c-closed: #3E5C86;   /* closed systems / engineered                */
+  --c-open: #5E8B4F;     /* open systems / nature-based                */
+  --c-bad: #C2553D;      /* fails a threshold / net warming            */
+  --c-good: #2E8B57;     /* passes a threshold                         */
+  --c-target: #25263D;   /* benchmark lines                            */
+
+  --font-body: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  --font-head: 'Taviraj', 'Outfit', Georgia, serif; /* Outfit backs up any glyph Taviraj lacks */
+
+  --max-w: 1080px;
+  --text-w: 700px;
+  --radius: 6px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --toc-h: 64px;         /* sticky .toc height + breathing room; anchors land below it */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cloud);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  color: inherit;
+}
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin-top: 0.2em; }
+h3 { font-size: 1.3rem; }
+h4 { font-family: var(--font-body); font-weight: 500; font-size: 1rem; }
+
+p { margin: 0 0 1.1em; }
+strong, b { font-weight: 500; }
+a { color: inherit; text-decoration-color: var(--ink-soft); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+
+sub, sup { font-size: 0.72em; line-height: 0; }
+
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+.text { max-width: var(--text-w); }
+.center { margin-left: auto; margin-right: auto; }
+.lede { font-size: 1.2rem; font-weight: 500; line-height: 1.45; }
+.soft { color: var(--ink-soft); }
+.small { font-size: 0.85rem; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: absolute; inset: 0 0 auto 0; z-index: 10;
+  padding: 28px var(--gutter);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wordmark {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.55rem;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--midnight);
+  display: inline-block;
+}
+.wordmark span { display: block; }
+.site-nav a {
+  font-weight: 400; font-size: 0.95rem; text-decoration: none;
+  margin-left: 24px; color: var(--midnight);
+}
+.site-nav a:hover { text-decoration: underline; }
+
+/* ---------- Hero (misty sage with soft orb) ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #AEB9B3 0%, #C4CCC6 45%, #DADFDA 100%);
+  padding: 150px 0 80px;
+  min-height: 62vh;
+}
+.hero.compact { min-height: 0; padding: 130px 0 56px; }
+.hero::before {
+  /* the soft "planet" orb */
+  content: "";
+  position: absolute;
+  width: min(62vw, 620px); aspect-ratio: 1;
+  right: -6vw; top: 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #FFFFFF 0%, #EEF1EE 45%, #C9D1CC 100%);
+  box-shadow: 0 0 60px rgba(255,255,255,0.55), inset -20px -30px 60px rgba(120,135,128,0.35);
+  opacity: 0.85;
+}
+.hero.compact::before { width: min(40vw, 380px); top: 10%; right: -4vw; }
+.hero .wrap { position: relative; z-index: 1; }
+.hero h1 { max-width: 15ch; }
+.hero .lede { max-width: 34rem; }
+.kicker {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--midnight);
+}
+
+/* Page steps: Part 1 of 4 */
+.steps { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+.steps a {
+  font-size: 0.85rem; font-weight: 400; text-decoration: none;
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(255,254,247,0.55); color: var(--midnight);
+  border: 1px solid rgba(37,38,61,0.12);
+}
+.steps a[aria-current] { background: var(--midnight); color: var(--cloud); }
+.steps a:hover:not([aria-current]) { background: var(--cloud); }
+
+/* Sticky in-page section nav for single-page explainers */
+.toc {
+  position: sticky; top: 0; z-index: 30;
+  background: rgba(255, 254, 247, 0.92);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ink-faint);
+}
+.toc .steps { margin: 0; padding-top: 10px; padding-bottom: 10px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.toc .steps::-webkit-scrollbar { display: none; }
+.toc .steps a { white-space: nowrap; background: var(--mist); }
+.toc .steps a[aria-current] { background: var(--midnight); color: var(--cloud); }
+[id] { scroll-margin-top: var(--toc-h); }
+
+/* ---------- Bands ---------- */
+.band { padding: 72px 0; }
+.band-cloud { background: var(--cloud); }
+.band-butter { background: var(--butter); }
+.band-mist { background: var(--mist); }
+.band-midnight { background: var(--midnight); color: var(--cloud); }
+.band-midnight h2, .band-midnight h3 { color: var(--butter); }
+.band-midnight a { color: var(--butter); }
+.band-midnight .soft { color: rgba(255,254,247,0.7); }
+
+/* ---------- Callouts & glossary ---------- */
+.key-idea {
+  border-left: 4px solid var(--canary);
+  background: var(--white);
+  padding: 18px 22px;
+  margin: 28px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.band-butter .key-idea { background: var(--cloud); }
+.key-idea .label {
+  display: block; font-weight: 500; font-size: 0.75rem;
+  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px;
+}
+.key-idea p:last-child { margin-bottom: 0; }
+
+.term {
+  border-bottom: 1.5px dotted var(--ink-soft);
+  cursor: help;
+  position: relative;
+  font-weight: 400;
+}
+.term:focus { outline: 2px solid var(--canary); outline-offset: 2px; }
+.tip {
+  position: absolute; z-index: 50;
+  max-width: 280px;
+  background: var(--midnight); color: var(--cloud);
+  font-size: 0.85rem; line-height: 1.4; font-weight: 300;
+  padding: 10px 12px; border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+
+.mark { background: linear-gradient(transparent 55%, var(--canary) 55%); }
+
+/* Big number row */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin: 32px 0; }
+.stat {
+  background: var(--card); border-radius: var(--radius); padding: 20px;
+}
+.band-midnight .stat { background: rgba(255,254,247,0.07); }
+.stat .num { font-family: var(--font-head); font-weight: 700; font-size: 2.1rem; line-height: 1.05; }
+.stat .cap { font-size: 0.9rem; color: var(--ink-soft); margin-top: 6px; line-height: 1.35; }
+.band-midnight .stat .cap { color: rgba(255,254,247,0.7); }
+
+/* Closing takeaways (band-midnight): one bold line + one or two sentences each */
+.takeaways { display: grid; gap: 14px; margin: 24px 0; }
+.takeaway { background: var(--card); border-radius: var(--radius); padding: 18px 20px; font-size: 1rem; line-height: 1.45; }
+.takeaway strong { display: block; margin-bottom: 2px; }
+.band-midnight .takeaway { background: rgba(255,254,247,0.07); }
+.band-midnight .takeaway strong { color: var(--butter); }
+.takeaways + p { margin-top: 24px; }
+
+/* ---------- Figures / interactives ---------- */
+.figure {
+  background: var(--white);
+  border: 1px solid var(--ink-faint);
+  border-radius: var(--radius);
+  padding: clamp(16px, 3vw, 28px);
+  margin: 36px 0;
+}
+.band-mist .figure, .band-butter .figure { border-color: transparent; }
+.band-midnight .figure { color: var(--ink); }
+.figure-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.figure-title { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; margin: 0; }
+.figure-tag {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--canary); color: var(--midnight); padding: 3px 8px; border-radius: 3px; white-space: nowrap;
+}
+.figure-tag.inline { font-size: 0.68rem; padding: 1px 6px; }
+.figure-instructions { font-size: 0.95rem; color: var(--ink-soft); margin: 0 0 14px; }
+.figure-caption { font-size: 0.85rem; color: var(--ink-soft); margin: 14px 0 0; line-height: 1.45; }
+.figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+.figure svg text { font-family: var(--font-body); fill: var(--ink); }
+.figure .axis text { font-size: 12px; fill: var(--ink-soft); }
+.figure .axis path, .figure .axis line { stroke: var(--ink-faint); }
+.figure .grid line { stroke: var(--ink-faint); stroke-dasharray: 2 3; }
+.figure .axis-label { font-size: 12px; fill: var(--ink-soft); }
+
+.controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px 24px; margin: 16px 0; }
+.control label { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 400; margin-bottom: 4px; }
+.control output { font-weight: 500; font-variant-numeric: tabular-nums; }
+
+input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: 3px;
+  background: var(--sage-light); outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--midnight); border: 3px solid var(--canary); cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--midnight); border: 3px solid var(--canary); cursor: pointer;
+}
+input[type="range"]:focus-visible { box-shadow: 0 0 0 3px var(--canary); }
+
+.btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+.btn {
+  font-family: var(--font-body); font-size: 0.88rem; font-weight: 400;
+  padding: 7px 14px; border-radius: 999px; cursor: pointer;
+  background: var(--mist); color: var(--midnight); border: 1px solid transparent;
+  transition: background .15s;
+}
+.btn:hover { background: var(--sage-light); }
+.btn[aria-pressed="true"], .btn.active { background: var(--midnight); color: var(--cloud); }
+.btn:focus-visible { outline: 3px solid var(--canary); outline-offset: 1px; }
+
+.readout {
+  display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: baseline;
+  background: var(--mist); border-radius: var(--radius); padding: 12px 16px; margin-top: 12px;
+  font-size: 0.95rem;
+}
+.readout .big { font-family: var(--font-head); font-weight: 700; font-size: 1.5rem; }
+.verdict { font-weight: 500; padding: 2px 10px; border-radius: 999px; font-size: 0.85rem; }
+.verdict.good { background: #D7EEDF; color: #1D5E3A; }
+.verdict.bad { background: #F6DDD6; color: #8A3220; }
+.verdict.meh { background: var(--butter); color: #6A5A00; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.85rem; margin-top: 6px; }
+.legend i { display: inline-block; width: 14px; height: 4px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+
+/* Expandable cards — echoes the "+" cards on outlierprojects.org */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 24px 0; }
+details.card {
+  background: var(--card); border-radius: var(--radius); padding: 18px 20px;
+}
+details.card summary {
+  list-style: none; cursor: pointer; font-weight: 500; display: flex; justify-content: space-between; gap: 12px;
+}
+details.card summary::-webkit-details-marker { display: none; }
+details.card summary::after { content: "+"; font-weight: 300; font-size: 1.4rem; line-height: 1; }
+details.card[open] summary::after { content: "–"; }
+details.card[open] { background: var(--white); box-shadow: 0 0 0 1px var(--ink-faint); }
+details.card p { font-size: 0.95rem; margin: 10px 0 0; }
+
+/* Quick check quiz */
+.quiz { background: var(--white); border-radius: var(--radius); padding: 22px; margin: 28px 0; border: 1px solid var(--ink-faint); }
+.band-midnight .quiz { color: var(--ink); }
+.quiz .q { font-weight: 500; margin-bottom: 12px; }
+.quiz button {
+  display: block; width: 100%; text-align: left; margin: 8px 0;
+  font-family: var(--font-body); font-size: 0.95rem; font-weight: 300;
+  padding: 10px 14px; border-radius: var(--radius); cursor: pointer;
+  background: var(--mist); border: 1px solid transparent; color: var(--ink);
+}
+.quiz button:hover { border-color: var(--ink-faint); }
+.quiz button.right { background: #D7EEDF; border-color: #2E8B57; }
+.quiz button.wrong { background: #F6DDD6; border-color: #C2553D; }
+.quiz .feedback { font-size: 0.95rem; margin-top: 10px; min-height: 1.4em; }
+
+/* Prev / next */
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pager a {
+  display: block; text-decoration: none; padding: 20px 22px; border-radius: var(--radius);
+  background: rgba(255,254,247,0.08); border: 1px solid rgba(255,254,247,0.2); color: var(--cloud);
+}
+.pager a:hover { background: rgba(255,254,247,0.14); }
+.pager .dir { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--butter); }
+.pager .ttl { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; display: block; margin-top: 4px; }
+.pager .next { text-align: right; grid-column: 2; }
+* + .pager { margin-top: 40px; }
+
+.source {
+  font-size: 0.88rem; line-height: 1.5; margin-top: 40px; padding-top: 24px;
+  border-top: 1px solid rgba(255,254,247,0.2);
+}
+
+.site-footer { background: var(--midnight); color: rgba(255,254,247,0.7); padding: 28px 0 40px; font-size: 0.85rem; }
+.site-footer .wordmark { color: var(--cloud); font-size: 1.2rem; }
+.site-footer .row { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
+
+/* Library (home) */
+.explainer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 28px; }
+.explainer-card {
+  display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--ink-faint); transition: transform .15s, box-shadow .15s;
+}
+.explainer-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(37,38,61,0.12); }
+.explainer-card .thumb { height: 150px; background: linear-gradient(160deg, #AEB9B3, #DADFDA); position: relative; }
+.explainer-card .body { padding: 18px 20px 22px; }
+.explainer-card .kicker { margin-bottom: 6px; }
+.explainer-card .body p { margin: 0; }
+.explainer-card h3 { margin-bottom: 6px; }
+.explainer-card .meta { font-size: 0.8rem; color: var(--ink-soft); margin-top: 10px; }
+.explainer-card.soon { opacity: 0.55; pointer-events: none; }
+
+/* Two-column layout for text + figure */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 760px) {
+  body { font-size: 17px; }
+  .split { grid-template-columns: 1fr; }
+  .hero { padding-top: 120px; min-height: 0; }
+  .hero::before { opacity: 0.45; }
+  .band { padding: 52px 0; }
+  .pager { grid-template-columns: 1fr; }
+  .pager .next { grid-column: 1; }
+  .site-nav a { margin-left: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+@media print {
+  .site-header, .pager, .steps, .controls, .btn-group { display: none; }
+  .hero { min-height: 0; padding: 20px 0; background: none; }
+  .hero::before { display: none; }
+  .band { padding: 20px 0; }
+}
+
+/* Numbered citations: <sup class="cite"><a href="#r1">1</a></sup> → <ol class="refs"><li id="r1">… */
+sup.cite { font-size: 0.68em; margin-left: 1px; }
+sup.cite a { text-decoration: none; color: var(--c-main); font-weight: 500; }
+sup.cite a:hover { text-decoration: underline; }
+.band-midnight sup.cite a { color: var(--butter); }
+.readout sup.cite { line-height: 0; }
+.refs { margin: 12px 0 16px; padding-left: 1.6em; font-size: 0.82rem; line-height: 1.5; }
+.refs li { margin: 0 0 6px; }
+.refs li:target { background: rgba(255,232,80,0.18); border-radius: 3px; }
+
+/* Call-to-action pill in the sticky section nav */
+.toc .steps a.cta { background: var(--canary); font-weight: 500; margin-left: auto; }
+.toc .steps a.cta:hover { background: var(--butter); }
+
+</style>
+<style>.reveal{opacity:1;transform:none}.hero{min-height:0}</style>
+
+<header class="site-header">
+  <a class="wordmark" href="https://www.outlierprojects.org/" aria-label="Outlier Projects explainers home"><span>outlier</span><span>projects</span></a>
+  <nav class="site-nav"><a href="https://www.outlierprojects.org/">Outlier Projects ↗</a></nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Explainer · Earth system stabilization</div>
+    <h1>A bigger toolkit for a changing planet</h1>
+    <p class="lede">Climate change is no longer a distant threat. It is reshaping the systems that regulate life on Earth. Here's what's destabilizing, and the new science that could help us respond.</p>
+  </div>
+</section>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap steps">
+    <a href="#bottom-line">1 · The bottom line</a>
+    <a href="#problem">2 · A new type of problem</a>
+    <a href="#toolbox">3 · A bigger toolbox</a>
+    <a href="#why-now">4 · Why now</a>
+    <a href="#done-before">5 · We've done it before</a>
+    <a class="cta" href="#get-involved">How to get involved</a>
+  </div>
+</nav>
+
+<!-- ============ 1. Bottom line ============ -->
+<section class="band band-cloud" id="bottom-line">
+  <div class="wrap">
+    <div class="text center">
+      <h2>The bottom line</h2>
+      <p>We have already breached the world's <strong>1.5 °C warming limit</strong>,<sup class="cite"><a href="#r1">1</a></sup> and we are tracking toward a dangerously plausible <strong>2.5–3 °C future</strong>.<sup class="cite"><a href="#r2">2</a></sup></p>
+      <p>Despite real progress on cutting emissions, human pollution has set off a chain reaction. From clouds to wetlands, and from glaciers to ocean currents, critical <span class="term" data-tip="The big, connected parts of the planet that set its climate: the atmosphere, oceans, ice, land and living things.">Earth systems</span> are destabilizing and taking on a runaway momentum of their own.</p>
+      <p>Scientists warn that the window to stabilize them is closing. Without urgent action, they could drive temperatures hotter, raise seas higher, and put water and food at risk for billions of people.</p>
+    </div>
+
+    <div class="figure reveal" id="fig-thermo">
+      <div class="figure-head">
+        <h3 class="figure-title">Where the thermometer is heading</h3>
+        <span class="figure-tag">Step through</span>
+      </div>
+      <p class="figure-instructions">Tap each step to build up the picture, from the limit we agreed on to the warming that nature itself could add.</p>
+      <div class="btn-group" role="group" aria-label="Steps">
+        <button class="btn" data-step="0" aria-pressed="true">1 · The limit</button>
+        <button class="btn" data-step="1" aria-pressed="false">2 · Today</button>
+        <button class="btn" data-step="2" aria-pressed="false">3 · Current path</button>
+        <button class="btn" data-step="3" aria-pressed="false">4 · Plus nature's feedbacks</button>
+      </div>
+      <div class="chart"></div>
+      <div class="readout" aria-live="polite"></div>
+      <p class="figure-caption">Warming above preindustrial levels. Current-path range from the UNEP <em>Emissions Gap Report 2025</em>;<sup class="cite"><a href="#r2">2</a></sup> extra warming from wetlands, permafrost and forest fires (0.2–0.4 °C by 2100) from ref. 11. The feedback band simply adds that range to the current path, as an illustration.</p>
+    </div>
+
+    <div class="text center">
+      <p>But humanity has a long record of solving problems that once looked unsolvable. We closed the ozone hole, eradicated smallpox and <a href="#r3">nudged an asteroid off course</a>.<sup class="cite"><a href="#r3">3</a></sup> <strong>Earth system stabilization research</strong> applies that same problem-solving ambition to the planet's most dangerous instabilities.</p>
+      <div class="key-idea">
+        <span class="label">Key idea</span>
+        <p>The tools to understand, and potentially manage, these risks are newly within reach. Yet this research receives only tens of millions of dollars a year. That gap is a tremendous opportunity for philanthropy to launch entirely new fields with planet-scale impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. A new type of problem ============ -->
+<section class="band band-butter" id="problem">
+  <div class="wrap">
+    <div class="text center">
+      <h2>A new type of problem</h2>
+      <p>Scientists increasingly warn of <span class="term" data-tip="Risks that don't grow smoothly. A small push can cause a big, sudden change, the way a canoe tips over once it leans too far.">non-linear risks</span>: <span class="term" data-tip="A loop where a change causes more of the same change. Warming melts ice, which exposes dark water, which absorbs more sunlight and causes more warming.">feedback loops</span> and <span class="term" data-tip="A threshold where a small extra push sets off a large change that keeps going on its own and is hard or impossible to reverse.">tipping points</span> that could trigger sudden, irreversible shifts in planetary systems. Those shifts could, in turn, destabilize our political, economic and social systems.<sup class="cite"><a href="#r4">4</a></sup></p>
+    </div>
+
+    <div class="figure reveal" id="fig-loops">
+      <div class="figure-head">
+        <h3 class="figure-title">Loops that feed themselves</h3>
+        <span class="figure-tag">Tap a system</span>
+      </div>
+      <p class="figure-instructions">Tap any Earth system to see how warming pushes it, and how it pushes back. Filter by the risk each one drives.</p>
+      <div class="btn-group" role="group" aria-label="Filter by risk">
+        <button class="btn" data-filter="all" aria-pressed="true">All</button>
+        <button class="btn" data-filter="heat" aria-pressed="false">Higher temperatures</button>
+        <button class="btn" data-filter="sea" aria-pressed="false">Rising seas</button>
+        <button class="btn" data-filter="water" aria-pressed="false">Water &amp; food</button>
+      </div>
+      <div class="chart"></div>
+      <div class="readout" aria-live="polite"></div>
+      <p class="figure-caption">A simplified map of the instabilities described on this page. Arrows show direction of influence only, not size. Numbers in the readout point to the sources below.</p>
+    </div>
+
+    <div class="text center">
+      <h3>Higher temperatures</h3>
+      <p>Earth now absorbs far more solar energy than before, because <strong>cloud cover is declining</strong><sup class="cite"><a href="#r5">5</a></sup> and so is <strong>sea ice</strong>.<sup class="cite"><a href="#r6">6</a></sup> Both normally act like a white sun hat for the planet. The warming from this extra sunlight now equals the warming from <strong>all human carbon dioxide emissions since 1750</strong>,<sup class="cite"><a href="#r7">7</a></sup> and over the last 20 years it has grown faster than models predicted.</p>
+      <p>Rising temperatures are also increasing emissions from ecosystems. <strong>Wetlands</strong>,<sup class="cite"><a href="#r8">8</a></sup> <strong>permafrost</strong><sup class="cite"><a href="#r9">9</a></sup> and <strong>forest fires</strong><sup class="cite"><a href="#r10">10</a></sup> could amplify global warming by up to 30%, adding an extra <strong>0.2–0.4 °C of warming by 2100</strong>.<sup class="cite"><a href="#r11">11</a></sup></p>
+
+      <h3>Rapid sea level rise</h3>
+      <p>Experts now expect <strong>2 to 7 feet</strong> of sea level rise by 2100, which could displace <strong>hundreds of millions of people</strong>.<sup class="cite"><a href="#r12">12</a></sup> More than 90% of the risk and uncertainty comes from instability in <span class="term" data-tip="A huge, fast-changing glacier in West Antarctica, about the size of Florida. Warm ocean water is melting it from underneath.">Thwaites Glacier</span>,<sup class="cite"><a href="#r13">13</a></sup> which can no longer be stabilized just by lowering emissions<sup class="cite"><a href="#r14">14</a></sup> or atmospheric temperatures.<sup class="cite"><a href="#r15">15</a></sup></p>
+    </div>
+
+    <div class="figure reveal" id="fig-sea">
+      <div class="figure-head">
+        <h3 class="figure-title">What 2 to 7 feet means for a coastal street</h3>
+        <span class="figure-tag">Drag the slider</span>
+      </div>
+      <p class="figure-instructions">Move the slider across the range experts expect by 2100 and watch the water climb a waterfront street: a fire hydrant, a parked car, a ground-floor shop.</p>
+      <div class="controls">
+        <div class="control">
+          <label for="sea-ft">Sea level rise by 2100 <output id="sea-ft-out"></output></label>
+          <input type="range" id="sea-ft" min="2" max="7" step="0.5" value="2">
+        </div>
+      </div>
+      <div class="chart"></div>
+      <div class="readout" aria-live="polite"></div>
+      <p class="figure-caption">Range from the sources cited above.<sup class="cite"><a href="#r12">12</a></sup> Heights are typical reference values (fire hydrant about 2.5 ft, car about 5 ft, standard door about 6.7 ft), drawn to scale in height only. The street sits at today's high-tide line. Real flooding depends on local land height, tides and storm surge, which rides on top of higher seas.</p>
+    </div>
+
+    <div class="text center">
+      <h3>Water and food insecurity</h3>
+      <p>Mountain glaciers are "water towers." They supply drinking and irrigation water for <strong>more than 20% of humanity</strong>.<sup class="cite"><a href="#r16">16</a></sup> Yet even at 1.5 °C, they are projected to lose <strong>more than a quarter of their mass</strong> this century.<sup class="cite"><a href="#r17">17</a></sup></p>
+      <p>Meanwhile the <span class="term" data-tip="The Atlantic Meridional Overturning Circulation: a giant ocean conveyor belt that carries warm water north through the Atlantic and cold water back south.">AMOC</span> is weakening and could pass a point of no return in coming decades. That would disrupt Asian and West African monsoons<sup class="cite"><a href="#r18">18</a></sup> and shift the tropical rainbelt southward,<sup class="cite"><a href="#r19">19</a></sup> moving rain away from places that grow food.</p>
+
+      <p>For decades, climate strategy has rested on two approaches: <strong>mitigating</strong> emissions and <strong>adapting</strong> to change. Both remain urgent and essential, but we can no longer assume they will be enough. We now need a third: <span class="mark">stabilization</span>.</p>
+    </div>
+
+    <div class="figure reveal" id="fig-strategy">
+      <div class="figure-head">
+        <h3 class="figure-title">From two strategies to three</h3>
+        <span class="figure-tag">Tap a pillar</span>
+      </div>
+      <p class="figure-instructions">Tap each pillar to see what it does and what it can't do alone.</p>
+      <div class="chart"></div>
+      <div class="readout" aria-live="polite"></div>
+      <p class="figure-caption">A conceptual picture. Stabilization adds to mitigation and adaptation; it does not replace them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. A bigger toolbox ============ -->
+<section class="band band-mist" id="toolbox">
+  <div class="wrap">
+    <div class="text center">
+      <h2>A bigger toolbox than we thought</h2>
+      <p>Climate risks may be worse than most people recognize. The good news is that the toolbox to address them may be bigger and more promising than we thought. A decade ago much of it was theoretical. Today, frontier teams are turning it into tractable science and engineering.</p>
+    </div>
+
+    <div class="figure reveal" id="fig-toolbox">
+      <div class="figure-head">
+        <h3 class="figure-title">Match the tool to the instability</h3>
+        <span class="figure-tag">Filter</span>
+      </div>
+      <p class="figure-instructions">Pick an instability to see which research areas target it. Tap a card to learn more.</p>
+      <div class="btn-group" role="group" aria-label="Filter tools by instability">
+        <button class="btn" data-target="all" aria-pressed="true">All</button>
+        <button class="btn" data-target="sunlight" aria-pressed="false">Lost reflectivity</button>
+        <button class="btn" data-target="ice" aria-pressed="false">Melting glaciers</button>
+        <button class="btn" data-target="seaice" aria-pressed="false">Arctic sea ice</button>
+        <button class="btn" data-target="emissions" aria-pressed="false">Nature's emissions</button>
+      </div>
+      <div class="card-grid tool-grid">
+        <details class="card" data-tags="sunlight ice seaice emissions"><summary>🛰️ Seeing what's coming</summary><p>New satellite observations, AI-enabled modeling and next-generation climate models can sharpen our understanding of key instabilities, forecast the likelihood and timing of tipping points, and identify the most promising ways to avert or stabilize them.</p></details>
+        <details class="card" data-tags="sunlight"><summary>☀️ Restoring Earth's reflectivity</summary><p>Researching approaches like spreading tiny reflective particles in the <span class="term" data-tip="The calm layer of the atmosphere above where planes fly, starting about 6–10 miles up.">stratosphere</span>, brightening marine clouds so they bounce more sunlight back to space, or protecting sea ice and snow.</p></details>
+        <details class="card" data-tags="ice"><summary>🧊 Stabilizing glaciers</summary><p>Pumping heat or water out from underneath glaciers so they refreeze to the rock beneath them, slowing their slide into the sea.</p></details>
+        <details class="card" data-tags="seaice"><summary>❄️ Slowing Arctic sea ice loss</summary><p>Thinning the insulating clouds that form over the Arctic in winter, letting more heat escape to space so more ice can grow.</p></details>
+        <details class="card" data-tags="emissions"><summary>🌿 Curbing nature's emissions</summary><p>Actively managing ecosystems like permafrost and wetlands, and speeding up the natural breakdown of methane in the atmosphere.</p></details>
+      </div>
+      <div class="readout" aria-live="polite"></div>
+      <p class="figure-caption">Research areas described in this explainer. Each is at an early stage; none is ready to deploy.</p>
+    </div>
+
+    <div class="text center">
+      <div class="key-idea">
+        <span class="label">Research, not deployment</span>
+        <p>None of this research is a call to deploy. It is a call to build the knowledge, tools and governance now, so that future decisions are made on robust evidence rather than in an uninformed rush during a crisis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. Why philanthropy, why now ============ -->
+<section class="band band-cloud" id="why-now">
+  <div class="wrap">
+    <div class="text center">
+      <h2>Why philanthropy, why now</h2>
+      <p>Stabilization research is one of the most neglected areas in climate. Total climate finance exceeds <strong>$1 trillion a year</strong>. Research on stabilizing Earth systems receives <strong>tens of millions</strong>.</p>
+    </div>
+
+    <div class="text center">
+      <p>The field is ready to put philanthropic funding to work. High-caliber teams can use new dollars immediately, and small amounts of capital can spark new research programs. Philanthropy can move at a speed governments can't, in areas private markets won't, and it can help galvanize government leadership on stabilization research and governance.</p>
+      <p>The window is short. Ice sheets and ocean currents run on their own clocks. Research now preserves our ability to act wisely later.</p>
+
+      <h3 id="get-involved">How to get involved</h3>
+      <p>Outlier Projects helps funders back the most promising work in this emerging field. Ways to engage:</p>
+      <div class="card-grid">
+        <details class="card"><summary>Climate Frontiers Co-Lab</summary><p>A collaborative fund with ICONIQ Impact, where founding donors shape focus areas and pool capital for multi-year research.</p></details>
+        <details class="card"><summary>A portfolio built for you</summary><p>Give through the <a href="https://outlierprojects.org/stabilization-fund">Earth System Stabilization Fund</a> at your direction, or have Outlier design a stabilization portfolio matched to your goals, timeline and appetite for risk, spanning frontier research, observation and governance. We can also informally advise you or your staff on strategy and specific grants.</p></details>
+        <details class="card"><summary>Learn with peers</summary><p>Join our <a href="https://www.outlierprojects.org/learning-series">Learning Series</a>, the Stabilization Funders Learning Community (email kelly@outlierprojects.org), or the annual Earth System Stabilization Summit.</p></details>
+        <details class="card"><summary>Talk with us</summary><p>Set up an intro call with Kelly Erhart (<a href="mailto:kelly@outlierprojects.org">kelly@outlierprojects.org</a>) or the Outlier team.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ What to remember ============ -->
+<section class="band band-midnight" id="remember">
+  <div class="wrap">
+    <div class="text center">
+      <h2>What to remember</h2>
+      <div class="takeaways">
+        <div class="takeaway"><strong>Earth systems are gaining their own momentum.</strong> Clouds, sea ice, wetlands, permafrost, glaciers and ocean currents are shifting in ways that add warming, raise seas and threaten water and food.</div>
+        <div class="takeaway"><strong>Mitigation and adaptation may not be enough on their own.</strong> Stabilization is a third pillar: research into understanding and managing the most dangerous instabilities.</div>
+        <div class="takeaway"><strong>The research is ready, and badly underfunded.</strong> Tens of millions a year against a trillion-dollar climate economy means small, fast philanthropic dollars can open entire new fields.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. We've done it before ============ -->
+<section class="band band-butter" id="done-before">
+  <div class="wrap">
+    <div class="text center">
+      <h2>We've done the impossible before</h2>
+      <p>The hardest planetary problems we have faced were solved by people who refused to accept them as permanent.</p>
+      <p>When scientists found a hole in the ozone layer, the world developed substitute chemicals and agreed to phase out the culprits. The ozone layer is now on a path to recovery. Smallpox, which killed hundreds of millions, was eradicated through vaccines and global coordination. In 2022, NASA's DART mission proved that humanity can change the orbit of an asteroid.<sup class="cite"><a href="#r3">3</a></sup> When COVID-19 arrived, mRNA vaccines went from lab to arms in under a year, built on decades of earlier research that was ready when it was needed.<sup class="cite"><a href="#r22">22</a></sup> Each looked impossible until the research had been done.</p>
+    </div>
+
+    <div class="text center">
+      <p>Climate progress itself offers proof. Solar power, batteries and electric vehicles were once dismissed as niche. Now they are among the cheapest and fastest-growing energy technologies on Earth: a <span class="term" data-tip="Like a tipping point, but in a good direction: once a clean technology gets cheap enough, adoption snowballs on its own.">positive tipping point</span> driven by sustained investment in innovation.</p>
+      <p>The history of climate strategy follows a familiar arc, too. Adaptation, methane cuts and carbon removal were each first dismissed as a <span class="term" data-tip="The worry that having a backup plan makes people less careful, for example that talk of carbon removal could slow emission cuts.">moral hazard</span> or a distraction, then researched, then normalized. Stabilization research is on the same path.</p>
+      <div class="key-idea">
+        <span class="label">Key idea</span>
+        <p>Humanity has already changed the planet's warming trajectory, just by accident. When 2020 shipping rules cut sulfur pollution, they cleaned the air but also removed a cooling haze,<sup class="cite"><a href="#r20">20</a></sup> likely speeding up warming.<sup class="cite"><a href="#r21">21</a></sup> If accidents can shift Earth's systems this much, deliberate, careful science can help us learn how to stabilize them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Closing ============ -->
+<section class="band band-midnight">
+  <div class="wrap">
+    <div class="text center">
+      <p class="lede">The instabilities are real, but so is our ability to solve hard problems. The question is whether we invest in that ability before we need it.</p>
+    </div>
+
+    <nav class="pager" aria-label="Learn more">
+      <a class="next" href="https://www.outlierprojects.org/learning-series"><span class="dir">Learn more</span><span class="ttl">Join our Learning Series ↗</span></a>
+    </nav>
+
+    <div class="source">
+      <strong>Sources</strong>
+      <ol class="refs">
+        <li id="r1">United Nations, "<a href="https://www.un.org/en/climatechange/science/climate-issues/degrees-matter">Climate issues: degrees matter</a>."</li>
+        <li id="r2">UN Environment Programme, <a href="https://www.unep.org/resources/emissions-gap-report-2025"><em>Emissions Gap Report 2025</em></a>.</li>
+        <li id="r3">NASA (2023), "<a href="https://www.nasa.gov/news-release/nasa-confirms-dart-mission-impact-changed-asteroids-motion-in-space/">NASA confirms DART mission impact changed asteroid's motion in space</a>."</li>
+        <li id="r4">"<a href="https://static1.squarespace.com/static/66fa5c9696c4073ff217b52f/t/68fb3e971399ce2d45eacf6b/1769699641470/Derailment+risk+report+v6.pdf">Derailment risk</a>" report (PDF).</li>
+        <li id="r5">Hansen, J. et al. (2025), "<a href="https://www.columbia.edu/~jeh1/mailings/2025/CloudFeedback.13May2025.pdf">Cloud feedback</a>," Columbia University.</li>
+        <li id="r6">Sea ice and Arctic reflectivity, <a href="https://pubmed.ncbi.nlm.nih.gov/16179434/">PubMed 16179434</a>.</li>
+        <li id="r7">Spark Climate Solutions, "<a href="https://www.sparkclimate.org/explainers/eei-declining-reflectivity.html#ref-4">Earth's energy imbalance and declining reflectivity</a>."</li>
+        <li id="r8">Wetland methane feedback, <a href="https://www.nature.com/articles/s41467-024-55266-y"><em>Nature Communications</em> (2024)</a>.</li>
+        <li id="r9">Schuur, E. A. G. et al. (2015), "<a href="https://www.nature.com/articles/nature14338">Climate change and the permafrost carbon feedback</a>," <em>Nature</em>.</li>
+        <li id="r10">Forest fire carbon emissions, <a href="https://www.science.org/doi/10.1126/science.adl5889"><em>Science</em> (2024)</a>.</li>
+        <li id="r11">Natural-system feedbacks and warming by 2100, <a href="https://essopenarchive.org/doi/pdf/10.22541/essoar.15002332/v1">ESS Open Archive preprint</a>.</li>
+        <li id="r12">Kulp, S. A. &amp; Strauss, B. H. (2019), "<a href="https://www.nature.com/articles/s41467-019-12808-z">New elevation data triple estimates of global vulnerability to sea-level rise and coastal flooding</a>," <em>Nature Communications</em>.</li>
+        <li id="r13">Bamber, J. L. et al. (2009), "<a href="https://www.science.org/doi/10.1126/science.1169335">Reassessment of the potential sea-level rise from a collapse of the West Antarctic Ice Sheet</a>," <em>Science</em>.</li>
+        <li id="r14">Naughten, K. A. et al. (2023), "<a href="https://www.nature.com/articles/s41558-023-01818-x">Unavoidable future increase in West Antarctic ice-shelf melting over the twenty-first century</a>," <em>Nature Climate Change</em>.</li>
+        <li id="r15">West Antarctic ice loss and atmospheric temperature, <a href="https://tc.copernicus.org/articles/19/283/2025/"><em>The Cryosphere</em> 19, 283 (2025)</a>.</li>
+        <li id="r16">UN-Water, <a href="https://www.unwater.org/publications/un-world-water-development-report-2025"><em>UN World Water Development Report 2025: Mountains and Glaciers</em></a>.</li>
+        <li id="r17">Rounce, D. R. et al. (2023), "<a href="https://climatechange.umaine.edu/wp-content/uploads/sites/439/2023/01/science.abo1324.pdf">Global glacier change in the 21st century: Every increase in temperature matters</a>," <em>Science</em>.</li>
+        <li id="r18">AMOC weakening and monsoons, <a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023EF003959"><em>Earth's Future</em> (2023)</a>.</li>
+        <li id="r19">AMOC and the tropical rainbelt, <a href="https://journals.ametsoc.org/view/journals/clim/38/13/JCLI-D-24-0333.1.xml"><em>Journal of Climate</em> 38(13) (2025)</a>.</li>
+        <li id="r20"><em>Scientific American</em>, "<a href="https://www.scientificamerican.com/article/cleaned-up-shipping-emissions-have-revealed-additional-global-warming/">Cleaned-up shipping emissions have revealed additional global warming</a>."</li>
+        <li id="r21">Shipping sulfur rules and accelerated warming, <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2024EF005011"><em>Earth's Future</em> (2024)</a>.</li>
+        <li id="r22">NIAID, "<a href="https://www.niaid.nih.gov/diseases-conditions/decades-making-mrna-covid-19-vaccines">Decades in the making: mRNA COVID-19 vaccines</a>."</li>
+      </ol>
+      <p class="soft small">This explainer simplifies the science for a general audience; interactive figures are illustrative approximations built from the numbers in the sources above.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap row">
+    <a class="wordmark" href="https://www.outlierprojects.org/"><span>outlier</span><span>projects</span></a>
+    <div>Accelerating research to stabilize Earth systems.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+/* ==========================================================================
+   Outlier Explainers — shared runtime
+   Loaded on every explainer page (after d3). Provides:
+     - glossary tooltips      <span class="term" data-tip="...">word</span>
+     - quick-check quizzes    <div class="quiz" data-answer="1">…</div>
+     - scroll reveal          class="reveal"
+     - OX helpers             OX.bindRange, OX.fmt, OX.chart, OX.css
+   Explainer-specific graphics live in /explainers/<slug>/<slug>.js
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  const OX = (window.OX = {});
+
+  /* Read a CSS custom property, e.g. OX.css('--c-main') */
+  OX.css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  /* Number formatting that reads well for a general audience */
+  OX.fmt = function (v, opts = {}) {
+    if (!isFinite(v)) return '—';
+    const { digits, money, unit = '' } = opts;
+    const abs = Math.abs(v);
+    let s;
+    if (digits !== undefined) s = v.toLocaleString('en-US', { maximumFractionDigits: digits, minimumFractionDigits: digits });
+    else if (abs >= 100) s = Math.round(v).toLocaleString('en-US');
+    else if (abs >= 10) s = v.toFixed(0);
+    else if (abs >= 1) s = v.toFixed(1);
+    else if (abs >= 0.1) s = v.toFixed(2);
+    else s = v.toPrecision(2);
+    return (money ? '$' : '') + s + unit;
+  };
+
+  /* Bind a range input to an <output> and a callback.
+     scale: 'log' maps slider 0..1000 onto [min,max] logarithmically. */
+  OX.bindRange = function (input, { output, format = (v) => v, scale, min, max, onInput }) {
+    const el = typeof input === 'string' ? document.querySelector(input) : input;
+    const out = typeof output === 'string' ? document.querySelector(output) : output;
+    const read = () => {
+      const raw = +el.value;
+      if (scale === 'log') {
+        const t = (raw - +el.min) / (+el.max - +el.min);
+        return Math.exp(Math.log(min) + t * (Math.log(max) - Math.log(min)));
+      }
+      return raw;
+    };
+    const write = (v) => {
+      if (scale === 'log') {
+        const t = (Math.log(v) - Math.log(min)) / (Math.log(max) - Math.log(min));
+        el.value = +el.min + t * (+el.max - +el.min);
+      } else el.value = v;
+      update();
+    };
+    const update = () => {
+      const v = read();
+      if (out) out.textContent = format(v);
+      if (onInput) onInput(v);
+    };
+    el.addEventListener('input', update);
+    return { read, write, update, el };
+  };
+
+  /* Responsive SVG chart scaffold. Returns {svg, g, w, h, margin}.
+     Width defaults to the container's pixel width so text stays legible on phones;
+     pair with OX.onResize to redraw. */
+  OX.chart = function (container, { width, height = 380, margin = { top: 16, right: 20, bottom: 48, left: 60 } } = {}) {
+    const root = d3.select(container);
+    root.selectAll('svg').remove();
+    if (!width) width = Math.max(300, root.node().clientWidth || 720);
+    const svg = root.append('svg')
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .attr('role', 'img');
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+    return { svg, g, w: width - margin.left - margin.right, h: height - margin.top - margin.bottom, margin };
+  };
+
+  /* Call fn on width changes (debounced). Use to redraw charts. */
+  OX.onResize = function (fn) {
+    let last = window.innerWidth, t;
+    window.addEventListener('resize', () => {
+      clearTimeout(t);
+      t = setTimeout(() => { if (window.innerWidth !== last) { last = window.innerWidth; fn(); } }, 150);
+    });
+  };
+
+  /* Toggle aria-pressed within a button group; returns the clicked button's dataset */
+  OX.pressGroup = function (buttons, clicked) {
+    buttons.forEach((b) => b.setAttribute('aria-pressed', b === clicked ? 'true' : 'false'));
+  };
+
+  /* Axis label helper */
+  OX.axisLabel = function (g, text, { x, y, rotate = 0, anchor = 'middle' }) {
+    return g.append('text').attr('class', 'axis-label')
+      .attr('transform', `translate(${x},${y}) rotate(${rotate})`)
+      .attr('text-anchor', anchor).text(text);
+  };
+
+  /* Pretty log-axis ticks: 1, 10, 100 … with optional $ */
+  OX.logTicks = function (scale, money) {
+    const [a, b] = scale.domain();
+    const ticks = [];
+    for (let e = Math.floor(Math.log10(a)); e <= Math.ceil(Math.log10(b)); e++) {
+      const v = Math.pow(10, e);
+      if (v >= a * 0.999 && v <= b * 1.001) ticks.push(v);
+    }
+    return { ticks, format: (v) => (money ? '$' : '') + (v >= 1 ? d3.format(',')(v) : v) };
+  };
+
+  /* ---------- Glossary tooltips ---------- */
+  function initTips() {
+    let tip = null;
+    const show = (el) => {
+      hide();
+      tip = document.createElement('div');
+      tip.className = 'tip';
+      tip.setAttribute('role', 'tooltip');
+      tip.textContent = el.dataset.tip;
+      document.body.appendChild(tip);
+      const r = el.getBoundingClientRect();
+      const tw = tip.offsetWidth;
+      let left = r.left + window.scrollX + r.width / 2 - tw / 2;
+      left = Math.max(12, Math.min(left, window.scrollX + document.documentElement.clientWidth - tw - 12));
+      tip.style.left = left + 'px';
+      tip.style.top = r.top + window.scrollY - tip.offsetHeight - 10 + 'px';
+    };
+    const hide = () => { if (tip) { tip.remove(); tip = null; } };
+    document.querySelectorAll('.term[data-tip]').forEach((el) => {
+      el.tabIndex = 0;
+      el.addEventListener('mouseenter', () => show(el));
+      el.addEventListener('mouseleave', hide);
+      el.addEventListener('focus', () => show(el));
+      el.addEventListener('blur', hide);
+      el.addEventListener('click', () => (tip ? hide() : show(el)));
+    });
+    window.addEventListener('scroll', hide, { passive: true });
+  }
+
+  /* ---------- Quick-check quizzes ----------
+     <div class="quiz" data-answer="2">
+       <div class="q">Question?</div>
+       <button>A</button><button>B</button><button>C</button>
+       <div class="feedback" data-right="Yes!" data-wrong="Not quite…"></div>
+     </div>                                                        */
+  function initQuizzes() {
+    document.querySelectorAll('.quiz').forEach((quiz) => {
+      const answer = +quiz.dataset.answer;
+      const buttons = [...quiz.querySelectorAll('button')];
+      const fb = quiz.querySelector('.feedback');
+      buttons.forEach((b, i) => b.addEventListener('click', () => {
+        buttons.forEach((x) => x.classList.remove('right', 'wrong'));
+        const ok = i === answer;
+        b.classList.add(ok ? 'right' : 'wrong');
+        if (fb) fb.textContent = ok ? fb.dataset.right : fb.dataset.wrong;
+      }));
+    });
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  function initReveal() {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
+    const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    }), { threshold: 0.12 });
+    els.forEach((e) => io.observe(e));
+  }
+
+  /* ---------- Scroll-spy for the sticky section nav (.toc a[href^="#"]) ---------- */
+  function initScrollSpy() {
+    const links = [...document.querySelectorAll('.toc a[href^="#"]:not(.cta)')];
+    const sections = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    if (!sections.length) return;
+    const update = () => {
+      const y = window.scrollY + 120;
+      let cur = 0;
+      sections.forEach((s, i) => { if (s.offsetTop <= y) cur = i; });
+      links.forEach((a, i) => {
+        if (i === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+      });
+      // keep the active pill visible on narrow screens
+      const active = links[cur], bar = active.parentElement;
+      if (bar.scrollWidth > bar.clientWidth) bar.scrollLeft = active.offsetLeft - 16;
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => { initTips(); initQuizzes(); initReveal(); initScrollSpy(); });
+})();
+
+</script>
+<script>
+/* ==========================================================================
+   A Bigger Toolkit for a Changing Planet — interactive graphics
+   Sources: see the numbered list at the bottom of index.html (r1–r22).
+   Every number drawn here comes from that text; nothing is modeled beyond
+   simple scaling and addition, noted per figure.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  const P = {
+    limit: 1.5,            // °C, Paris limit (r1)
+    today: 1.55,           // °C, drawn just past 1.5 to show "already breached" (r1)
+    pathLo: 2.5, pathHi: 3.0,   // °C, current-policy path (r2)
+    fbLo: 0.2, fbHi: 0.4,  // °C extra by 2100 from wetlands, permafrost, fires (r11)
+        seaLo: 2, seaHi: 7,    // ft by 2100 (r12)
+      };
+
+  let C;
+  const readColors = () => ({
+    main: OX.css('--c-main'), compare: OX.css('--c-compare'), third: OX.css('--c-third'),
+    closed: OX.css('--c-closed'), open: OX.css('--c-open'), bad: OX.css('--c-bad'), good: OX.css('--c-good'),
+    target: OX.css('--c-target'),
+    ink: OX.css('--midnight'), soft: OX.css('--ink-soft'), faint: OX.css('--ink-faint'),
+    canary: OX.css('--canary'), butter: OX.css('--butter'), sage: OX.css('--sage'), mist: OX.css('--mist'),
+    sageLight: OX.css('--sage-light'), cloud: OX.css('--cloud'),
+  });
+
+  const cite = (...n) => `<sup class="cite">${n.map((i) => `<a href="#r${i}">${i}</a>`).join(',')}</sup>`;
+  const figs = {};
+
+  /* Make an SVG group behave like a button */
+  function asButton(sel, label, fn) {
+    sel.attr('tabindex', 0).attr('role', 'button').attr('aria-label', label).style('cursor', 'pointer')
+      .on('click', fn)
+      .on('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); fn(); } });
+  }
+
+  /* ---------- 1. Thermometer stepper ---------- */
+  figs['fig-thermo'] = function (el) {
+    const chartEl = el.querySelector('.chart'), readout = el.querySelector('.readout');
+    const buttons = [...el.querySelectorAll('[data-step]')];
+    let step = 0, ctx;
+    const TEXT = [
+      `<span>The world agreed to try to limit warming to <span class="big">1.5 °C</span> above preindustrial levels.${cite(1)}</span>`,
+      `<span>We have already breached it.${cite(1)} <span class="verdict bad">Limit crossed</span></span>`,
+      `<span>Today's policies put us on track for <span class="big">2.5–3 °C</span>.${cite(2)}</span>`,
+      `<span>Wetlands, permafrost and fires could add <span class="big">0.2–0.4 °C</span> more by 2100,${cite(11)} pushing the range toward <strong>2.7–3.4 °C</strong>.</span>`,
+    ];
+
+    function draw() {
+      const narrow = chartEl.clientWidth < 520;
+      const { g, w, h } = OX.chart(chartEl, { height: narrow ? 210 : 190, margin: { top: 54, right: 24, bottom: 44, left: 24 } });
+      const x = d3.scaleLinear().domain([0, 3.6]).range([0, w]);
+      const barH = 34, y0 = h / 2 - barH / 2;
+      // track
+      g.append('rect').attr('x', 0).attr('y', y0).attr('width', w).attr('height', barH).attr('rx', barH / 2).attr('fill', C.mist);
+      const grad = g.append('defs').append('linearGradient').attr('id', 'thermo-grad');
+      grad.append('stop').attr('offset', '0%').attr('stop-color', C.sage);
+      grad.append('stop').attr('offset', '100%').attr('stop-color', C.bad);
+      const fill = g.append('rect').attr('x', 0).attr('y', y0).attr('height', barH).attr('rx', barH / 2).attr('fill', 'url(#thermo-grad)').attr('width', 0);
+      // path band + feedback band
+      const band = g.append('rect').attr('y', y0 - 8).attr('height', barH + 16).attr('rx', 6)
+        .attr('fill', C.bad).attr('fill-opacity', 0.18).attr('stroke', C.bad).attr('stroke-width', 1.5).attr('opacity', 0);
+      const fb = g.append('rect').attr('y', y0 - 8).attr('height', barH + 16).attr('rx', 6)
+        .attr('fill', 'none').attr('stroke', C.bad).attr('stroke-width', 2).attr('stroke-dasharray', '5 4').attr('opacity', 0);
+      const bandLbl = g.append('text').attr('y', y0 - 16).attr('text-anchor', 'middle').attr('font-size', 13).attr('font-weight', 500).attr('fill', C.bad).attr('opacity', 0);
+      // limit line
+      g.append('line').attr('x1', x(P.limit)).attr('x2', x(P.limit)).attr('y1', y0 - 30).attr('y2', y0 + barH + 8)
+        .attr('stroke', C.target).attr('stroke-width', 2).attr('stroke-dasharray', '4 3');
+      g.append('text').attr('x', x(P.limit)).attr('y', y0 - 36).attr('text-anchor', 'middle').attr('font-size', 13).attr('font-weight', 500).text('1.5 °C limit');
+      // today marker
+      const dot = g.append('circle').attr('cy', y0 + barH / 2).attr('r', 10).attr('fill', C.canary).attr('stroke', C.ink).attr('stroke-width', 2.5).attr('opacity', 0);
+      // axis
+      g.append('g').attr('class', 'axis').attr('transform', `translate(0,${y0 + barH + 14})`)
+        .call(d3.axisBottom(x).tickValues([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5]).tickFormat((d) => d + '°'));
+      OX.axisLabel(g, 'Warming above preindustrial (°C)', { x: w / 2, y: y0 + barH + 50 });
+      ctx = { x, fill, band, fb, bandLbl, dot };
+      update(false);
+    }
+
+    function update(animate = true) {
+      const { x, fill, band, fb, bandLbl, dot } = ctx;
+      const t = (s) => (animate ? s.transition().duration(600) : s);
+      const fillTo = step === 0 ? P.limit : step === 1 ? P.today : P.pathHi;
+      t(fill).attr('width', x(fillTo)).attr('opacity', step === 0 ? 0.35 : 1);
+      t(dot).attr('cx', x(P.today)).attr('opacity', step >= 1 ? 1 : 0);
+      t(band).attr('x', x(P.pathLo)).attr('width', x(P.pathHi) - x(P.pathLo)).attr('opacity', step >= 2 ? 1 : 0);
+      t(fb).attr('x', x(P.pathLo + P.fbLo)).attr('width', x(P.pathHi + P.fbHi) - x(P.pathLo + P.fbLo)).attr('opacity', step >= 3 ? 1 : 0);
+      bandLbl.text(step >= 3 ? 'path + feedbacks' : 'current path')
+        .attr('x', step >= 3 ? x((P.pathLo + P.fbLo + P.pathHi + P.fbHi) / 2) : x((P.pathLo + P.pathHi) / 2));
+      t(bandLbl).attr('opacity', step >= 2 ? 1 : 0);
+      readout.innerHTML = TEXT[step];
+    }
+
+    buttons.forEach((b) => b.addEventListener('click', () => { step = +b.dataset.step; OX.pressGroup(buttons, b); update(); }));
+    draw();
+    OX.onResize(draw);
+  };
+
+  /* ---------- 2. Feedback loop map ---------- */
+  figs['fig-loops'] = function (el) {
+    const chartEl = el.querySelector('.chart'), readout = el.querySelector('.readout');
+    const buttons = [...el.querySelectorAll('[data-filter]')];
+    const GROUP = { heat: { name: 'Higher temperatures', color: () => C.bad }, sea: { name: 'Rising seas', color: () => C.closed }, water: { name: 'Water & food', color: () => C.open } };
+    const NODES = [
+      { id: 'clouds', label: ['Clouds'], g: 'heat', feeds: true, refs: [5, 7], text: 'Fewer bright, reflective clouds let more sunlight reach the surface, which drives more warming.' },
+      { id: 'seaice', label: ['Sea ice'], g: 'heat', feeds: true, refs: [6, 7], text: 'Melting sea ice uncovers dark ocean, which absorbs far more sunlight than white ice.' },
+      { id: 'wetlands', label: ['Wetlands'], g: 'heat', feeds: true, refs: [8, 11], text: 'Warmer wetlands release more methane, a powerful heat-trapping gas.' },
+      { id: 'permafrost', label: ['Perma-', 'frost'], g: 'heat', feeds: true, refs: [9, 11], text: 'Thawing frozen soils let microbes break down old plant matter, releasing carbon dioxide and methane.' },
+      { id: 'fires', label: ['Forest', 'fires'], g: 'heat', feeds: true, refs: [10, 11], text: 'Hotter, drier forests burn more often, sending stored carbon into the air.' },
+      { id: 'thwaites', label: ['Thwaites', 'Glacier'], g: 'sea', feeds: false, refs: [13, 14, 15], text: 'Warm ocean water melts the glacier from below. Its retreat now has momentum of its own, and lowering emissions alone can no longer stop it. It drives most of the risk of 2 to 7 feet of sea level rise.' },
+      { id: 'glaciers', label: ['Mountain', 'glaciers'], g: 'water', feeds: false, refs: [16, 17], text: 'Shrinking glaciers mean less meltwater for the more than 20% of people who rely on it for drinking and farming.' },
+      { id: 'amoc', label: ['Atlantic', 'current'], g: 'water', feeds: false, refs: [18, 19], text: 'The AMOC is weakening and could pass a point of no return, disrupting monsoons and shifting the tropical rainbelt south.' },
+    ];
+    let filter = 'all', sel = null, ctx;
+
+    function draw() {
+      const W = Math.max(300, chartEl.clientWidth);
+      const narrow = W < 520;
+      const H = narrow ? 380 : 440;
+      const { svg, g, w, h } = OX.chart(chartEl, { height: H, margin: { top: 10, right: 10, bottom: 10, left: 10 } });
+      svg.attr('aria-label', 'Diagram of Earth systems arranged around a central warming node');
+      const cx = w / 2, cy = h / 2;
+      const R = Math.min(w, h) / 2 - (narrow ? 44 : 56);
+      const nr = narrow ? 22 : 28;
+      const defs = svg.append('defs');
+      ['bad', 'closed', 'open', 'soft'].forEach((k) => {
+        defs.append('marker').attr('id', 'arr-' + k).attr('viewBox', '0 0 10 10').attr('refX', 8).attr('refY', 5)
+          .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto-start-reverse')
+          .append('path').attr('d', 'M0,0 L10,5 L0,10 z').attr('fill', k === 'soft' ? C.soft : C[k]);
+      });
+      const links = g.append('g');
+      NODES.forEach((n, i) => {
+        const a = -Math.PI / 2 + (i / NODES.length) * Math.PI * 2;
+        n.x = cx + R * Math.cos(a); n.y = cy + R * Math.sin(a); n.a = a;
+      });
+      // links
+      NODES.forEach((n) => {
+        const col = GROUP[n.g].color(), mk = n.g === 'heat' ? 'bad' : n.g === 'sea' ? 'closed' : 'open';
+        const cr = narrow ? 34 : 44;
+        const sx = cx + cr * Math.cos(n.a), sy = cy + cr * Math.sin(n.a);
+        const ex = n.x - (nr + 4) * Math.cos(n.a), ey = n.y - (nr + 4) * Math.sin(n.a);
+        const off = 14, px = -Math.sin(n.a) * off, py = Math.cos(n.a) * off;
+        n.out = links.append('path').attr('d', `M${sx + px},${sy + py} L${ex + px},${ey + py}`)
+          .attr('stroke', col).attr('stroke-width', 2).attr('fill', 'none').attr('marker-end', `url(#arr-${mk})`);
+        if (n.feeds) {
+          n.back = links.append('path').attr('d', `M${ex - px},${ey - py} L${sx - px},${sy - py}`)
+            .attr('stroke', col).attr('stroke-width', 2).attr('fill', 'none').attr('stroke-dasharray', '5 4').attr('marker-end', `url(#arr-${mk})`);
+        } else {
+          // self-reinforcing loop drawn as a small circle-arrow outside the node
+          const lx = n.x + (nr + 12) * Math.cos(n.a), ly = n.y + (nr + 12) * Math.sin(n.a);
+          n.back = links.append('circle').attr('cx', lx).attr('cy', ly).attr('r', 9).attr('fill', 'none')
+            .attr('stroke', col).attr('stroke-width', 2).attr('stroke-dasharray', '40 17');
+        }
+      });
+      // center
+      g.append('circle').attr('cx', cx).attr('cy', cy).attr('r', narrow ? 32 : 42).attr('fill', C.bad);
+      g.append('text').attr('x', cx).attr('y', cy + 5).attr('text-anchor', 'middle').attr('font-size', narrow ? 13 : 15).attr('font-weight', 500).style('fill', '#fff').text('Warming');
+      // nodes
+      NODES.forEach((n) => {
+        const col = GROUP[n.g].color();
+        n.el = g.append('g').attr('transform', `translate(${n.x},${n.y})`);
+        n.ring = n.el.append('circle').attr('r', nr + 5).attr('fill', 'none').attr('stroke', C.ink).attr('stroke-width', 2.5).attr('opacity', 0);
+        n.el.append('circle').attr('r', nr).attr('fill', col);
+        const lines = n.label, fs = narrow ? 9.5 : 11;
+        lines.forEach((t, j) => n.el.append('text').attr('text-anchor', 'middle').attr('font-size', fs).attr('font-weight', 500)
+          .attr('y', (j - (lines.length - 1) / 2) * (fs + 1) + fs * 0.35).style('fill', '#fff').text(t));
+        asButton(n.el, n.label.join(' '), () => { sel = n.id; update(); });
+      });
+      // legend
+      const lg = g.append('g').attr('transform', `translate(0,${h - 6})`).attr('font-size', 11);
+      if (!narrow) {
+        lg.append('line').attr('x1', 0).attr('x2', 22).attr('stroke', C.soft).attr('stroke-width', 2);
+        lg.append('text').attr('x', 28).attr('y', 4).style('fill', C.soft).text('warming pushes it');
+        lg.append('line').attr('x1', 140).attr('x2', 162).attr('stroke', C.soft).attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
+        lg.append('text').attr('x', 168).attr('y', 4).style('fill', C.soft).text('it adds warming');
+        lg.append('circle').attr('cx', 280).attr('cy', 0).attr('r', 6).attr('fill', 'none').attr('stroke', C.soft).attr('stroke-width', 2).attr('stroke-dasharray', '26 12');
+        lg.append('text').attr('x', 292).attr('y', 4).style('fill', C.soft).text('self-reinforcing');
+      }
+      ctx = true;
+      update();
+    }
+
+    function update() {
+      if (!ctx) return;
+      NODES.forEach((n) => {
+        const on = filter === 'all' || n.g === filter;
+        n.el.attr('opacity', on ? 1 : 0.18);
+        n.out.attr('opacity', on ? 0.9 : 0.08);
+        n.back.attr('opacity', on ? 0.9 : 0.08);
+        n.ring.attr('opacity', sel === n.id ? 1 : 0);
+      });
+      const n = NODES.find((d) => d.id === sel);
+      if (n) {
+        readout.innerHTML = `<span><strong>${n.label.join(' ')}</strong> · <span style="color:${GROUP[n.g].color()};font-weight:500">${GROUP[n.g].name}</span><br>${n.text}${cite(...n.refs)}</span>`;
+      } else if (filter === 'heat') {
+        readout.innerHTML = `<span>Five loops add heat. Together, wetlands, permafrost and fires alone could amplify warming by up to <span class="big">30%</span>.${cite(11)}</span>`;
+      } else if (filter === 'sea') {
+        readout.innerHTML = `<span>One glacier dominates: more than <span class="big">90%</span> of the risk and uncertainty in future sea level rise.${cite(13)}</span>`;
+      } else if (filter === 'water') {
+        readout.innerHTML = `<span>Glaciers and ocean currents shape where fresh water and rain go, for <span class="big">billions</span> of people.${cite(16, 18, 19)}</span>`;
+      } else {
+        readout.innerHTML = '<span>Tap a system to see how it responds to warming.</span>';
+      }
+    }
+
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      filter = b.dataset.filter; OX.pressGroup(buttons, b);
+      const cur = NODES.find((d) => d.id === sel);
+      if (cur && filter !== 'all' && cur.g !== filter) sel = null;
+      update();
+    }));
+    draw();
+    OX.onResize(draw);
+  };
+
+  /* ---------- 3. Sea level on a coastal street ----------
+     Reference heights (typical values, not from the sources): hydrant ~2.5 ft,
+     sedan ~4.75 ft, standard door 6 ft 8 in, one-story shopfront ~10 ft.
+     Drawn to scale vertically; widths are compressed to fit. */
+  figs['fig-sea'] = function (el) {
+    const chartEl = el.querySelector('.chart'), readout = el.querySelector('.readout');
+    const REF = { hydrant: 2.5, car: 4.75, door: 6.67, wall: 10 };
+    let ft = 2, ctx;
+    const slider = OX.bindRange('#sea-ft', { output: '#sea-ft-out', format: (v) => v + ' ft', onInput: (v) => { ft = v; if (ctx) update(); } });
+    const impact = (v) =>
+      v < 2.5 ? 'Most of a fire hydrant is underwater, and water pours over doorsteps into ground-floor shops and homes.'
+      : v < 4 ? 'Above a fire hydrant and up to a car\'s windows. Ground floors, parking garages and street-level utilities flood.'
+      : v < 5 ? 'A parked car is almost fully submerged. The street is impassable for vehicles and emergency services.'
+      : v < 6.67 ? 'Cars are fully underwater and most of a doorway is submerged. The ground floor of the building is lost.'
+      : 'Water is above the top of a standard door. Everything at street level is underwater.';
+
+    function draw() {
+      const narrow = chartEl.clientWidth < 520;
+      const { g, w, h } = OX.chart(chartEl, { height: narrow ? 300 : 340, margin: { top: 16, right: 12, bottom: 28, left: 44 } });
+      const y = d3.scaleLinear().domain([0, 11]).range([h, 0]);
+      const s = y(0) - y(1); // pixels per foot
+      g.append('g').attr('class', 'grid').call(d3.axisLeft(y).ticks(11).tickSize(-w).tickFormat(''));
+      g.append('g').attr('class', 'axis').call(d3.axisLeft(y).ticks(narrow ? 6 : 11).tickFormat((d) => d + ' ft'));
+      // expected range band
+      g.append('rect').attr('x', 0).attr('width', w).attr('y', y(P.seaHi)).attr('height', y(P.seaLo) - y(P.seaHi))
+        .attr('fill', C.closed).attr('fill-opacity', 0.06);
+      g.append('line').attr('x1', 0).attr('x2', w).attr('y1', y(P.seaHi)).attr('y2', y(P.seaHi)).attr('stroke', C.closed).attr('stroke-dasharray', '3 3').attr('opacity', 0.5);
+      g.append('line').attr('x1', 0).attr('x2', w).attr('y1', y(P.seaLo)).attr('y2', y(P.seaLo)).attr('stroke', C.closed).attr('stroke-dasharray', '3 3').attr('opacity', 0.5);
+
+      const ink = C.ink, lbl = (x, yy, t, anchor = 'middle') => g.append('text').attr('x', x).attr('y', yy).attr('text-anchor', anchor)
+        .attr('font-size', narrow ? 10 : 11.5).style('fill', C.soft).text(t);
+
+      // fire hydrant
+      const hx = w * 0.07, hw = Math.max(0.9 * s, 12);
+      const hyd = g.append('g').attr('fill', C.bad);
+      hyd.append('rect').attr('x', hx - hw / 2).attr('y', y(REF.hydrant - 0.3)).attr('width', hw).attr('height', y(0) - y(REF.hydrant - 0.3)).attr('rx', 3);
+      hyd.append('path').attr('d', `M${hx - hw / 2 - 2},${y(REF.hydrant - 0.3)} Q${hx},${y(REF.hydrant + 0.15)} ${hx + hw / 2 + 2},${y(REF.hydrant - 0.3)} Z`);
+      hyd.append('rect').attr('x', hx - hw / 2 - 5).attr('y', y(1.6)).attr('width', hw + 10).attr('height', 0.35 * s).attr('rx', 2);
+      lbl(Math.max(hx, 2), y(REF.hydrant) - 8, narrow ? 'Hydrant' : 'Fire hydrant', hx < 40 ? 'start' : 'middle');
+
+      // car (side view)
+      const cx0 = w * (narrow ? 0.15 : 0.16), cw = w * (narrow ? 0.32 : 0.28);
+      const car = g.append('g').attr('fill', C.compare);
+      car.append('rect').attr('x', cx0).attr('y', y(3.0)).attr('width', cw).attr('height', y(0.8) - y(3.0)).attr('rx', 8);
+      car.append('path').attr('d', `M${cx0 + cw * 0.2},${y(3.0)} L${cx0 + cw * 0.32},${y(REF.car)} L${cx0 + cw * 0.7},${y(REF.car)} L${cx0 + cw * 0.84},${y(3.0)} Z`);
+      car.append('path').attr('d', `M${cx0 + cw * 0.27},${y(3.0)} L${cx0 + cw * 0.35},${y(4.35)} L${cx0 + cw * 0.5},${y(4.35)} L${cx0 + cw * 0.5},${y(3.0)} Z M${cx0 + cw * 0.53},${y(3.0)} L${cx0 + cw * 0.53},${y(4.35)} L${cx0 + cw * 0.67},${y(4.35)} L${cx0 + cw * 0.77},${y(3.0)} Z`).attr('fill', C.mist);
+      [0.22, 0.78].forEach((f) => car.append('circle').attr('cx', cx0 + cw * f).attr('cy', y(0.95)).attr('r', Math.min(0.95 * s, cw * 0.12)).attr('fill', ink));
+      lbl(cx0 + cw / 2, y(REF.car) - 8, 'Car');
+
+      // shopfront
+      const bx = w * (narrow ? 0.54 : 0.55), bw = w - bx - 4;
+      const b = g.append('g');
+      b.append('rect').attr('x', bx).attr('y', y(REF.wall)).attr('width', bw).attr('height', y(0) - y(REF.wall)).attr('fill', C.sageLight).attr('stroke', ink).attr('stroke-width', 1.5);
+      b.append('rect').attr('x', bx - 4).attr('y', y(REF.wall) - 6).attr('width', bw + 8).attr('height', 6).attr('fill', ink);
+      const dw = Math.max(3 * s * (narrow ? 0.8 : 1), 30), dx = bx + bw * 0.14;
+      b.append('rect').attr('x', dx).attr('y', y(REF.door)).attr('width', dw).attr('height', y(0) - y(REF.door)).attr('fill', C.closed).attr('fill-opacity', 0.75).attr('stroke', ink);
+      b.append('circle').attr('cx', dx + dw - 6).attr('cy', y(3.3)).attr('r', 2.5).attr('fill', C.canary);
+      const wx = dx + dw + bw * 0.08, ww = bx + bw - wx - bw * 0.08;
+      if (ww > 24) {
+        b.append('rect').attr('x', wx).attr('y', y(7)).attr('width', ww).attr('height', y(2.5) - y(7)).attr('fill', C.cloud).attr('stroke', ink);
+        b.append('text').attr('x', wx + ww / 2).attr('y', y(4.9)).attr('text-anchor', 'middle').attr('font-size', narrow ? 10 : 12).attr('font-weight', 500).style('fill', C.soft).text('SHOP');
+      }
+      lbl(bx + bw / 2, y(REF.wall) - 12, narrow ? 'Ground floor' : 'Ground-floor shop');
+      lbl(dx + dw / 2, y(REF.door) - 5, 'Door', 'middle');
+
+      // water
+      const water = g.append('rect').attr('x', 0).attr('width', w).attr('fill', C.closed).attr('fill-opacity', 0.42);
+      const surf = g.append('line').attr('x1', 0).attr('x2', w).attr('stroke', C.closed).attr('stroke-width', 2.5);
+      const tag = g.append('text').attr('x', w - 8).attr('text-anchor', 'end').attr('font-size', 12).attr('font-weight', 500).style('fill', C.closed);
+      // street
+      g.append('line').attr('x1', 0).attr('x2', w).attr('y1', h).attr('y2', h).attr('stroke', ink).attr('stroke-width', 2);
+      lbl(0, h + 20, 'Street at today\'s high-tide line', 'start');
+      ctx = { y, water, surf, tag, h };
+      slider.update();
+    }
+    function update() {
+      const { y, water, surf, tag, h } = ctx;
+      water.attr('y', y(ft)).attr('height', h - y(ft));
+      surf.attr('y1', y(ft)).attr('y2', y(ft));
+      tag.attr('y', y(ft) - 6).text(`+${ft} ft`);
+      readout.innerHTML = `<span><span class="big">${ft} feet</span> · ${impact(ft)} Storm surge and high tides come on top of this.</span>` +
+        `<span>Thwaites Glacier: <strong>&gt;90%</strong> of the risk and uncertainty${cite(13)}</span>`;
+    }
+    draw();
+    OX.onResize(draw);
+  };
+
+  /* ---------- 5. Three pillars ---------- */
+  figs['fig-strategy'] = function (el) {
+    const chartEl = el.querySelector('.chart'), readout = el.querySelector('.readout');
+    const PIL = [
+      { id: 'mit', name: 'Mitigate', sub: 'Cut emissions', col: () => C.main, text: '<strong>Mitigation</strong> cuts the pollution that causes warming. It is essential, but some systems, like Thwaites Glacier, now have momentum that lower emissions alone can no longer stop.' + cite(14) },
+      { id: 'ada', name: 'Adapt', sub: 'Prepare for change', col: () => C.compare, text: '<strong>Adaptation</strong> helps people cope: sea walls, drought-tolerant crops, early warnings. It is urgent, but there are limits to adapting to many feet of sea level rise or a failed monsoon.' },
+      { id: 'sta', name: 'Stabilize', sub: 'Steady Earth systems', col: () => C.canary, isNew: true, text: '<strong>Stabilization</strong> is the new third pillar: research to understand, forecast and potentially manage the most dangerous instabilities directly, so future decisions rest on evidence.' },
+    ];
+    let sel = 'sta', ctx;
+    function draw() {
+      const W = Math.max(300, chartEl.clientWidth), narrow = W < 520;
+      const { g, w, h } = OX.chart(chartEl, { height: narrow ? 230 : 250, margin: { top: 10, right: 6, bottom: 10, left: 6 } });
+      const gap = narrow ? 10 : 22, pw = (w - gap * 2) / 3;
+      // roof
+      g.append('path').attr('d', `M0,48 L${w / 2},4 L${w},48 Z`).attr('fill', C.mist).attr('stroke', C.ink).attr('stroke-width', 1.5);
+      g.append('text').attr('x', w / 2).attr('y', 38).attr('text-anchor', 'middle').attr('font-size', narrow ? 11 : 13).attr('font-weight', 500).text('A livable climate');
+      g.append('rect').attr('x', 0).attr('y', h - 14).attr('width', w).attr('height', 14).attr('fill', C.mist).attr('stroke', C.ink).attr('stroke-width', 1.5);
+      ctx = PIL.map((p, i) => {
+        const gx = i * (pw + gap);
+        const pg = g.append('g').attr('transform', `translate(${gx},56)`);
+        const ph = h - 56 - 18;
+        const rect = pg.append('rect').attr('width', pw).attr('height', ph).attr('rx', 4).attr('fill', p.col())
+          .attr('stroke', C.ink).attr('stroke-width', p.isNew ? 2.5 : 0).attr('stroke-dasharray', p.isNew ? '6 4' : null);
+        const txtCol = p.isNew ? C.ink : '#fff';
+        pg.append('text').attr('x', pw / 2).attr('y', ph / 2 - 4).attr('text-anchor', 'middle').attr('font-family', 'Taviraj, serif').attr('font-weight', 700).attr('font-size', narrow ? 15 : 20).style('fill', txtCol).text(p.name);
+        if (pw >= 130) pg.append('text').attr('x', pw / 2).attr('y', ph / 2 + 16).attr('text-anchor', 'middle').attr('font-size', narrow ? 10 : 12).style('fill', txtCol).text(p.sub);
+        if (p.isNew) pg.append('text').attr('x', pw / 2).attr('y', 18).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-weight', 500).attr('letter-spacing', '0.1em').style('fill', C.ink).text('NEW');
+        asButton(pg, p.name, () => { sel = p.id; update(); });
+        return { p, rect, pg };
+      });
+      update();
+    }
+    function update() {
+      ctx.forEach(({ p, pg }) => pg.attr('opacity', sel === p.id ? 1 : 0.55));
+      readout.innerHTML = `<span>${PIL.find((p) => p.id === sel).text}</span>`;
+    }
+    draw();
+    OX.onResize(draw);
+  };
+
+  /* ---------- 7. Toolbox filter (HTML cards) ---------- */
+  figs['fig-toolbox'] = function (el) {
+    const buttons = [...el.querySelectorAll('[data-target]')];
+    const cards = [...el.querySelectorAll('.tool-grid .card')];
+    const readout = el.querySelector('.readout');
+    const NAME = { sunlight: 'Earth\'s lost reflectivity', ice: 'melting glaciers', seaice: 'Arctic sea ice loss', emissions: 'rising emissions from nature' };
+    function update(target) {
+      let n = 0;
+      cards.forEach((c) => {
+        const on = target === 'all' || c.dataset.tags.split(' ').includes(target);
+        c.style.opacity = on ? 1 : 0.35;
+        c.style.boxShadow = on && target !== 'all' ? `0 0 0 2px ${C.ink}` : '';
+        if (on) n++;
+      });
+      readout.innerHTML = target === 'all'
+        ? '<span>Five research areas, from better forecasts to hands-on stabilization.</span>'
+        : `<span><span class="big">${n}</span> research areas target ${NAME[target]}.</span>`;
+    }
+    buttons.forEach((b) => b.addEventListener('click', () => { OX.pressGroup(buttons, b); update(b.dataset.target); }));
+    update('all');
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    C = readColors();
+    Object.entries(figs).forEach(([id, fn]) => {
+      const el = document.getElementById(id);
+      if (el) fn(el);
+    });
+  });
+})();
+
+</script>
+
+
+</body></html>
